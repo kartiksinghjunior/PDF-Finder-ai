@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Finder AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #003B73;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Top Banner */
+        .top-banner {
+
+
+        
+             
+                background: linear-gradient(135deg, #b62121 50%, #b613f7 50%);
+                padding: 60px 10px 40px;
+                position: relative;
+                color: white;
+            }
+
+        
+
+        .top-banner h1 {
+            font-size: 30px;
+            color: #00D1FF;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .top-banner h2 {
+            font-size: 18px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+
+        /* PDF input section */
+        .input-area {
+            
+            margin-top: 40px;
+        }
+
+        input,
+        button {
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            margin: 10px;
+            width: 300px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .quote {
+            margin-top: 40px;
+            font-size: 20px;
+            font-style: italic;
+            color: #FFD700;
+        }
+
+        footer {
+            margin-top: 60px;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #FFD700;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+
+            input,
+            button {
+                width: 90%;
+                font-size: 14px;
+            }
+
+            .quote {
+                font-size: 16px;
+            }
+
+            footer {
+                font-size: 12px;
+                padding: 15px 5px;
+            }
+
+            .top-banner h1 {
+                font-size: 26px;
+            }
+
+            .top-banner h2 {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- 🔝 Top Heading -->
+    <div class="top-banner">
+        <h1>🌍 World’s First Free AI PDF Platform</h1>
+        <h2>Powered by vision, driven by purpose 📚</h2>
+    </div>
+
+    <!-- 🔍 PDF Search -->
+    <div class="input-area">
+
+    <span style="display: block; margin-bottom: 10px;">
+        <input type="text" id="queryInput" placeholder="e.g., Give me BCom 1st sem PDF in Hindi">
+    </span>
+
+    <span style="display: block; margin-bottom: 10px;">
+        <p style="color: #FFD700; font-size: 14px; margin: 0;">
+            🧠 Please type full details for accurate results. Incomplete queries may fail.
+        </p>
+    </span>
+
+    <span style="display: block; margin-bottom: 10px;">
+        <button onclick="getPDF()">Get PDF</button>
+    </span>
+
+    <span style="display: block;" id="result"></span>
+
+</div>
+
+    <!-- 💬 Motivational Quote -->
+    <div class="quote">
+        <span style="font-size: 24px; font-weight: 600; color: #FFD700;">
+            🚀 “Don’t wait for the future to happen —
+            <span style="color: white;">create it with your courage.”</span>
+        </span>
+    </div>
+
+    <!-- ✅ JS Script -->
+    <script>
+        async function getPDF() {
+            const query = document.getElementById('queryInput').value;
+
+            const response = await fetch('http://127.0.0.1:5000/getpdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            });
+
+            const data = await response.json();
+            document.getElementById('result').innerHTML = data.response;
+        }
+    </script>
+
+    <!-- 🔻 Bottom Footer Bar -->
+
+    <footer>
+        <a href="mailto:kartiksinghjunior1@gmail.com">📧 Contact</a> |
+        <a href="https://wa.me/919696444893">💬 Support</a> |
+        <a href="https://forms.gle/yourformlink">📝 Feedback</a>
+        <br><br>
+        <p style="font-size: 12px; color: #888;">© 2025 TheHalfBloodPrince. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
